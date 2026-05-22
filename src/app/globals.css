@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: oklch(0.98 0.01 240);
+  --color-foreground: oklch(0.15 0.02 240);
+  
+  --color-primary: oklch(0.6 0.2 260);
+  --color-primary-foreground: oklch(1 0 0);
+  
+  --color-secondary: oklch(0.95 0.02 260);
+  --color-secondary-foreground: oklch(0.3 0.05 260);
+  
+  --color-accent: oklch(0.7 0.15 300);
+  --color-accent-foreground: oklch(1 0 0);
+
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg;
+  }
+  
+  .glass-nav {
+    @apply sticky top-0 z-50 bg-white/50 backdrop-blur-2xl border-b border-white/20;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 bg-primary text-primary-foreground rounded-xl font-semibold 
+           transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]
+           hover:shadow-[0_10px_20px_-10px_rgba(var(--color-primary),0.5)];
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-secondary text-secondary-foreground rounded-xl font-semibold 
+           transition-all duration-300 hover:bg-secondary/80 active:scale-[0.98];
+  }
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
